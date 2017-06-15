@@ -16,9 +16,19 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
+		DataSet dataSet=new DataSet();
+
+		FXMLLoader root = new FXMLLoader(this.getClass().getResource("MainWindow.fxml"));
+		Parent chatNode = root.load();
+		MainWindowController mainWindowController = root.getController();
+		DataSetChangeListener dataSetChangeListener = new DataSetChangeListener(dataSet, mainWindowController);
+		mainWindowController.setDataSetChangeListener(dataSetChangeListener);
+		mainWindowController.setExceptionListener(new ExceptionListener(mainWindowController));
+		mainWindowController.setDataSet(dataSet);
+		Scene mainScene = new Scene(chatNode);
+		mainScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+		primaryStage.setScene(mainScene);
 		primaryStage.setTitle("Ethereum Mining Stats");
-		primaryStage.setScene(new Scene(root));
 		primaryStage.show();
 	}
 }
