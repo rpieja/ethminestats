@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.effect.Glow?>
@@ -22,14 +18,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.rpieja.ethminestats.MainWindowController">
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.rpieja.ethminestats.MainWindowController">
    <center>
-      <JFXTabPane prefHeight="514.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <JFXTabPane fx:id="mainTabPane" prefHeight="514.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
          <effect>
             <Glow />
          </effect>
          <tabs>
-            <Tab text="Stats">
+            <Tab id="statsTab" text="Stats">
               <content>
                 <AnchorPane prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #ffffff;">
                      <children>
@@ -69,7 +65,7 @@
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label fx:id="avgHashrateLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="10.00" textAlignment="CENTER" textFill="#545454" GridPane.rowIndex="1">
+                              <Label fx:id="avgHashrateLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="N/A" textAlignment="CENTER" textFill="#545454" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Roboto Light" size="26.0" />
                                  </font>
@@ -98,17 +94,17 @@
                                     <Insets top="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label fx:id="curHashrateLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="10.00" textAlignment="CENTER" textFill="#545454" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <Label fx:id="curHashrateLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="N/A" textAlignment="CENTER" textFill="#545454" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Roboto Light" size="26.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="unpaidBalanceLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="0.00000" textAlignment="CENTER" textFill="#545454" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Label fx:id="unpaidBalanceLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="N/A" textAlignment="CENTER" textFill="#545454" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Roboto Light" size="26.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="acceptedSharesLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="00" textAlignment="CENTER" textFill="#545454" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                              <Label fx:id="acceptedSharesLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="N/A" textAlignment="CENTER" textFill="#545454" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Roboto Light" size="26.0" />
                                  </font>
@@ -121,12 +117,22 @@
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab text="Chart">
+            <Tab id="chartTab" text="Chart">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <LineChart layoutX="25.0" layoutY="-42.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-0.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </children></AnchorPane>
               </content>
             </Tab>
-            <Tab closable="false" text="Settings">
+            <Tab id="settingsTab" closable="false" text="Settings">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -137,7 +143,7 @@
                                     <Font name="Roboto" size="20.0" />
                                  </font>
                               </Label>
-                              <JFXTextField fx:id="walletAdressTextField" alignment="CENTER" text="http://leopardus/maxmati/miner.json">
+                              <JFXTextField fx:id="walletAdressTextField" alignment="CENTER">
                                  <font>
                                     <Font name="Roboto Light" size="20.0" />
                                  </font>

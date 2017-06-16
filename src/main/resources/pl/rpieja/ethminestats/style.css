@@ -6,3 +6,18 @@
 .jfx-snackbar-toast{
     -fx-text-fill: f8f8f8;
 }
+
+.jfx-tab-pane .headers-region {
+    -fx-background-color: #313131;
+}
+.jfx-tab-pane .tab-header-background {
+    -fx-background-color: #313131;
+}
+
+.jfx-tab-pane .tab-header-area .jfx-rippler{
+    -jfx-rippler-fill: f8f8f8;
+}
+.jfx-tab-pane .tab-label{
+    -fx-font-weight: 100;
+    -fx-text-fill: f8f8f8;
+}
