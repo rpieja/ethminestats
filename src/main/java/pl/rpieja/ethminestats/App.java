@@ -4,7 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import static com.sun.org.apache.xalan.internal.utils.SecuritySupport.getResourceAsStream;
 
 /**
  * Created by radix on 15.06.2017.
@@ -29,6 +32,7 @@ public class App extends Application {
 		mainScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 		primaryStage.setScene(mainScene);
 		primaryStage.setTitle("Ethereum Mining Stats");
+		primaryStage.getIcons().add(new Image(this.getClass().getResourceAsStream("icon.png")));
 		primaryStage.show();
 	}
 }
